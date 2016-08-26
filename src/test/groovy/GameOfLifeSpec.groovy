@@ -26,6 +26,19 @@ class GameOfLifeSpec extends Specification {
     }
 
 
+    void 'should reach max iterations'() {
+        given:
+        def gol = createGol()
+        Grid seed = createGrid()
+        int maxIterations = 10
+
+        when:
+        def result = gol.evolves(seed, maxIterations)
+
+        then:
+        result.iterations == maxIterations
+    }
+
     /******
      * TODO
      * - reach max iterations
