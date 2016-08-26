@@ -13,5 +13,6 @@ class GolTest extends Specification {
 
         then:
         next != null
+        next instanceof Grid
     }
 }
