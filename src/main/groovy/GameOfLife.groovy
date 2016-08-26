@@ -1,6 +1,6 @@
 class GameOfLife {
 
-    GolIteration evolves(Grid seed, int maxIterations) {
+    GolIteration run(Grid seed, int maxIterations) {
         new GolIteration(new Grid(), maxIterations)
     }
 }

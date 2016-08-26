@@ -20,7 +20,7 @@ class GameOfLifeSpec extends Specification {
         int maxIterations = 10
 
         when:
-        def result = gol.evolves(seed, maxIterations)
+        def result = gol.run(seed, maxIterations)
 
         then:
         result instanceof GolIteration
@@ -29,7 +29,6 @@ class GameOfLifeSpec extends Specification {
         result.iterations != null
     }
 
-
     void 'should reach max iterations'() {
         given:
         def gol = createGol()
@@ -37,15 +36,15 @@ class GameOfLifeSpec extends Specification {
         int maxIterations = 10
 
         when:
-        def result = gol.evolves(seed, maxIterations)
+        def result = gol.run(seed, maxIterations)
 
         then:
         result.iterations == maxIterations
     }
 
+    
 /******
      * TODO
-     * - reach max iterations
      * - stop when stable
      * - grid with rows and columns
      * - a single cell should die
