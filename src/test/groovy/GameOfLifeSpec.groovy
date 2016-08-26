@@ -25,4 +25,14 @@ class GameOfLifeSpec extends Specification {
         result.iterations != null
     }
 
+
+    /******
+     * TODO
+     * - reach max iterations
+     * - stop when stable
+     * - grid with rows and columns
+     * - a single cell should die
+     *
+     */
+
 }
