@@ -1,18 +1,19 @@
 import spock.lang.Specification
 
 class GolTest extends Specification {
-
-    void 'should return a new iteration' () {
+    void 'The algorithm should evolves from a seed'() {
         given:
         def gol = new Gol()
-
-        def seed = new Grid()
+        Grid seed = new Grid()
+        int maxIterations = 10
 
         when:
-        def next = gol.next(seed)
+        def result = gol.evolves(seed, maxIterations)
 
         then:
-        next != null
-        next instanceof Grid
+        result instanceof GolIteration
+        result.grid != null
+        result.grid instanceof Grid
+        result.iterations != null
     }
 }

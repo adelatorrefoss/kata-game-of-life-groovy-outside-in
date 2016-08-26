@@ -1,7 +1,6 @@
 class Gol {
 
-    def next(Grid grid) {
+    GolIteration evolves(Grid seed, int maxIterations) {
 
-        return new Grid()
     }
 }
