@@ -1,7 +1,11 @@
 import spock.lang.Specification
 
 class GameOfLifeSpec extends Specification {
-    private Grid createGrid() {
+    private Grid createSeed() {
+        new Grid()
+    }
+
+    private Grid createUnstableSeed() {
         new Grid()
     }
 
@@ -12,7 +16,7 @@ class GameOfLifeSpec extends Specification {
     void 'should return a grid and num iterations'() {
         given:
         def gol = createGol()
-        Grid seed = createGrid()
+        Grid seed = createSeed()
         int maxIterations = 10
 
         when:
@@ -29,7 +33,7 @@ class GameOfLifeSpec extends Specification {
     void 'should reach max iterations'() {
         given:
         def gol = createGol()
-        Grid seed = createGrid()
+        Grid seed = createUnstableSeed()
         int maxIterations = 10
 
         when:
@@ -39,7 +43,7 @@ class GameOfLifeSpec extends Specification {
         result.iterations == maxIterations
     }
 
-    /******
+/******
      * TODO
      * - reach max iterations
      * - stop when stable
