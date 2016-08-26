@@ -9,6 +9,10 @@ class GameOfLifeSpec extends Specification {
         new Grid()
     }
 
+    Grid createStableSeed() {
+        new Grid()
+    }
+
     private GameOfLife createGol() {
         new GameOfLife()
     }
@@ -42,7 +46,20 @@ class GameOfLifeSpec extends Specification {
         result.iterations == maxIterations
     }
 
-    
+    void 'should stop when stable and not reach max iterations'() {
+        given:
+        def gol = createGol()
+        Grid seed = createStableSeed()
+        int maxIterations = 10
+
+        when:
+        def result = gol.run(seed, maxIterations)
+
+        then:
+        result.iterations < maxIterations
+    }
+
+
 /******
      * TODO
      * - stop when stable
