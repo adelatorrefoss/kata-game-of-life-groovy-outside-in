@@ -1,15 +1,15 @@
 import spock.lang.Specification
 
-class GolTest extends Specification {
+class GameOfLifeSpec extends Specification {
     private Grid createGrid() {
         new Grid()
     }
 
-    private Gol createGol() {
-        new Gol()
+    private GameOfLife createGol() {
+        new GameOfLife()
     }
 
-    void 'The algorithm should evolves from a seed'() {
+    void 'should return a grid and num iterations'() {
         given:
         def gol = createGol()
         Grid seed = createGrid()
@@ -24,4 +24,5 @@ class GolTest extends Specification {
         result.grid instanceof Grid
         result.iterations != null
     }
+
 }
