@@ -68,14 +68,4 @@ class GameOfLifeSpec extends Specification {
 
         1 * nextService.isStable() >> true
     }
-
-
-/******
-     * TODO
-     * - stop when stable
-     * - grid with rows and columns
-     * - a single cell should die
-     *
-     */
-
 }
