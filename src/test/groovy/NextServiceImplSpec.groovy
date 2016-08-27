@@ -21,6 +21,19 @@ class NextServiceImplSpec extends Specification {
         next instanceof Grid
     }
 
+    void 'should go over all the grid calculating new grid'() {
+        given:
+        NextServiceImpl nextService = createNextService()
+        Grid seed = Mock(Grid)
+
+        when:
+        Grid next = nextService.next(seed)
+
+        then:
+        next instanceof Grid
+        1 * seed.nextItem()
+    }
+
 
     /******
      * TODO
