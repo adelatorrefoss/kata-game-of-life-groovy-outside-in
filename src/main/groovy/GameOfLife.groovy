@@ -5,7 +5,18 @@ class GameOfLife {
     }
 
 
+    class GridItem {
+
+    }
+
+
     class Grid {
+
+        GridItem nextItem() {
+            //return new GridItem()
+            //return null
+        }
+
     }
 
     class GolIteration {
@@ -32,7 +43,12 @@ class GameOfLife {
         }
 
         Grid next(Grid seed) {
-            return new Grid()
+            GridItem item
+            Grid nextGrid = new Grid()
+            while (item = seed.nextItem()) {
+
+            }
+            return nextGrid
         }
     }
 

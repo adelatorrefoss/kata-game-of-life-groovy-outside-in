@@ -19,6 +19,7 @@ class NextServiceImplSpec extends Specification {
 
         then:
         next instanceof Grid
+
     }
 
     void 'should go over all the grid calculating new grid'() {
@@ -31,8 +32,9 @@ class NextServiceImplSpec extends Specification {
 
         then:
         next instanceof Grid
-        1 * seed.nextItem()
+        (1.._) * seed.nextItem() >> null
     }
+
 
 
     /******
