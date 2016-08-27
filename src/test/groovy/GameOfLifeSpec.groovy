@@ -1,6 +1,11 @@
-import spock.lang.Specification
+import spock.lang.*
+
+import GameOfLife.Grid
+import GameOfLife.GolIteration
+import GameOfLife.NextService
 
 class GameOfLifeSpec extends Specification {
+
     private Grid createSeed() {
         new Grid()
     }
@@ -13,13 +18,17 @@ class GameOfLifeSpec extends Specification {
         new Grid()
     }
 
+    private GameOfLife createGol(nextService) {
+        new GameOfLife(nextService)
+    }
+
     private GameOfLife createGol() {
-        new GameOfLife()
+        createGol(Mock(NextService))
     }
 
     void 'should return a grid and num iterations'() {
         given:
-        def gol = createGol()
+        GameOfLife gol = createGol()
         Grid seed = createSeed()
         int maxIterations = 10
 
@@ -28,14 +37,11 @@ class GameOfLifeSpec extends Specification {
 
         then:
         result instanceof GolIteration
-        result.grid != null
-        result.grid instanceof Grid
-        result.iterations != null
     }
 
     void 'should reach max iterations'() {
         given:
-        def gol = createGol()
+        GameOfLife gol = createGol()
         Grid seed = createUnstableSeed()
         int maxIterations = 10
 
@@ -48,7 +54,9 @@ class GameOfLifeSpec extends Specification {
 
     void 'should stop when stable and not reach max iterations'() {
         given:
-        def gol = createGol()
+        def nextService = Mock(NextService)
+        GameOfLife gol = createGol(nextService)
+
         Grid seed = createStableSeed()
         int maxIterations = 10
 
@@ -57,6 +65,8 @@ class GameOfLifeSpec extends Specification {
 
         then:
         result.iterations < maxIterations
+
+        1 * nextService.isStable() >> true
     }
 
 
