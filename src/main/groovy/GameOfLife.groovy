@@ -30,8 +30,16 @@ class GameOfLife {
         GridItem calc(GridItem item)
     }
 
+    class GolAlgorithmImpl implements GolAlgorithm {
+
+        GridItem calc(GridItem item) {
+            return new GridItem()
+        }
+    }
+
 
     class NextServiceImpl implements NextService {
+
         GolAlgorithm alg
 
         boolean isStable() {
@@ -42,7 +50,8 @@ class GameOfLife {
             GridItem item
             Grid nextGrid = new Grid()
             while (item = seed.next()) {
-                seed.push(item)
+                def nextItem = alg.calc(item)
+                seed.push(nextItem)
             }
             return nextGrid
         }

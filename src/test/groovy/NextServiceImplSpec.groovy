@@ -77,9 +77,6 @@ class NextServiceImplSpec extends Specification {
 
     /******
      * TODO
-     * - Create new grid with results
-     * - Calculate new item
-     * - Save new item
      * - grid with rows and columns
      * - Alg: a single cell should die
      *
