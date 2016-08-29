@@ -119,5 +119,30 @@ class GridSpec extends Specification {
         then:
         numNeighbours == 8
     }
+
+    void 'get num neighbours in a cross'() {
+        given:
+        Grid grid = new Grid(3,3)
+        grid.push(new GridItem(false))
+        grid.push(new GridItem(true))
+        grid.push(new GridItem(false))
+        grid.push(new GridItem(true))
+        grid.push(new GridItem(false))
+        grid.push(new GridItem(true))
+        grid.push(new GridItem(false))
+        grid.push(new GridItem(true))
+        grid.push(new GridItem(false))
+
+
+        when:
+        grid.next()
+        grid.next()
+        grid.next()
+        grid.next()
+        def numNeighbours = grid.countNeighbours()
+
+        then:
+        numNeighbours == 4
+    }
 }
 
