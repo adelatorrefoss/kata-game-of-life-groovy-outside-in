@@ -1,6 +1,4 @@
 class GridItem {
-    int row
-    int column
     def value
 
     GridItem(value) {
@@ -64,8 +62,6 @@ class Grid {
     }
 
     void push(GridItem item) {
-        item.row = this.writeRowIndex
-        item.column = this.writeColumnIndex
         this.data.push(item)
 
         this.writeRowIndex ++
