@@ -51,15 +51,10 @@ class Grid {
     }
 
     GridItem next() {
-        def item
-        try {
-            item = this.get(readRowIndex, readColumnIndex)
-
+        def item = this.getSafe(this.readRowIndex, this.readColumnIndex)
+        if (item) {
             nextRowAndColumn()
-        } catch(IndexOutOfBoundsException e) {
-            item = null
         }
-
         return item
     }
 
@@ -71,7 +66,34 @@ class Grid {
         return this.data
     }
 
-    def countNeighbours() {
-        return 0
+    GridItem getSafe(i, j) {
+        def item
+        try {
+            item = this.get(i, j)
+        } catch(IndexOutOfBoundsException e) {
+            item = null
+        }
+        return item
+    }
+
+    // Count neighbours for the item in the actual read position
+    int countNeighbours() {
+        int numNeighbours = 0
+        for (int i = -1; i <= 1; i++) {
+            for (int j = -1; j <= 1; j++) {
+                def row = this.readRowIndex + i
+                def column = this.readColumnIndex + j
+
+                // item itself doesn't count
+                if (row == readRowIndex && column == readColumnIndex) {
+                    continue
+                }
+                def item = getSafe(row, column)
+                if (item?.isAlive()) {
+                    numNeighbours ++
+                }
+            }
+        }
+        return numNeighbours
     }
 }
