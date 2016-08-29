@@ -1,6 +1,7 @@
 import spock.lang.Specification
 
 import GameOfLife.Grid
+import GameOfLife.GridItem
 
 class GridSpec extends Specification {
 
@@ -13,9 +14,22 @@ class GridSpec extends Specification {
         grid.columns == 1
     }
 
+    void 'could be accesed'() {
+        given:
+        Grid grid = new Grid()
+
+        expect:
+        grid.get(1,1) == null
+
+        when:
+        grid.get(1,2)
+
+        then:
+        thrown(IndexOutOfBoundsException)
+    }
+
     /******
      * TODO
-     * - grid with rows and columns
      * - next item from a grid
      * - push item to a grid
      * - Alg: a single cell should die
