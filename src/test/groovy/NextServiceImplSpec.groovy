@@ -74,11 +74,4 @@ class NextServiceImplSpec extends Specification {
         5 * seed.next() >>> [new GridItem(), new GridItem(), new GridItem(), new GridItem(), null]
         4 * alg.calc(_)
     }
-
-    /******
-     * TODO
-     * - grid with rows and columns
-     * - Alg: a single cell should die
-     *
-     */
 }
