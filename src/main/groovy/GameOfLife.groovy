@@ -5,12 +5,12 @@ interface NextService {
 
 
 interface GolAlgorithm {
-    GridItem calc(GridItem item)
+    GridItem calc(GridItem item, neighbours)
 }
 
 class GolAlgorithmImpl implements GolAlgorithm {
 
-    GridItem calc(GridItem item) {
+    GridItem calc(GridItem item, neighbours) {
         return new GridItem()
     }
 }
@@ -28,7 +28,8 @@ class NextServiceImpl implements NextService {
         GridItem item
         Grid nextGrid = new Grid()
         while (item = seed.next()) {
-            def nextItem = alg.calc(item)
+            def neighbours = seed.getNeighbours()
+            def nextItem = alg.calc(item, neighbours)
             seed.push(nextItem)
         }
         return nextGrid

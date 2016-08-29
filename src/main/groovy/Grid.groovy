@@ -66,4 +66,8 @@ class Grid {
     ArrayList getData() {
         return this.data
     }
+
+    def getNeighbours() {
+
+    }
 }

@@ -72,7 +72,7 @@ class NextServiceImplSpec extends Specification {
 
         then:
         5 * seed.next() >>> [new GridItem(), new GridItem(), new GridItem(), new GridItem(), null]
-        4 * alg.calc(_)
+        4 * alg.calc(*_)
     }
 
     void 'should calculate new item passing neighbours'() {
@@ -87,6 +87,7 @@ class NextServiceImplSpec extends Specification {
         then:
         5 * seed.next() >>> [new GridItem(), new GridItem(), new GridItem(), new GridItem(), null]
         4 * alg.calc(_, _)
+        4 * seed.getNeighbours()
     }
 
 }
