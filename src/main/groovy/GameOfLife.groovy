@@ -9,6 +9,10 @@ class GameOfLife {
 
     class Grid {
 
+        // At list one row and column
+        int rows = 1
+        int columns =1
+
         GridItem next() {
             //return new GridItem()
             //return null
