@@ -94,4 +94,20 @@ class GolAlgorithmImplSpec extends Specification {
         then:
         expected.isAlive()
     }
+
+    void 'when dead cell should return a dead cell in other cases'() {
+        given:
+        def alg = new GolAlgorithmImpl()
+        def isAlive = false
+        def cell = new GridItem(isAlive)
+
+        when:
+        def expected = alg.calc(cell, numNeighbours)
+
+        then:
+        !expected.isAlive()
+
+        where:
+        numNeighbours << [0,1,2,4,5,6,7,8]
+    }
 }
