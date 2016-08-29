@@ -81,14 +81,15 @@ class GridSpec extends Specification {
 
     void 'get num neighbours'() {
         given:
-        Grid grid = new Grid(2,2)
+        Grid grid = new Grid(1,1)
         for (int i = 1; i <= 10; i++) {
             def alive = true
             grid.push(new GridItem(alive))
         }
 
         expect:
-        grid.countNeighbours() == 3
+        grid.countNeighbours() == 0
     }
+
 }
 
