@@ -87,7 +87,7 @@ class NextServiceImplSpec extends Specification {
         then:
         5 * seed.next() >>> [new GridItem(), new GridItem(), new GridItem(), new GridItem(), null]
         4 * alg.calc(_, _)
-        4 * seed.getNeighbours()
+        4 * seed.countNeighbours()
     }
 
 }

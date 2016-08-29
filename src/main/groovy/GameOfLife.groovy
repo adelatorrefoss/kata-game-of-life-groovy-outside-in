@@ -1,20 +1,20 @@
-interface NextService {
-    boolean isStable()
-    Grid next(Grid seed)
-}
-
-
+// GolAlgorithm
 interface GolAlgorithm {
-    GridItem calc(GridItem item, neighbours)
+    GridItem calc(GridItem item, numNeighbours)
 }
 
 class GolAlgorithmImpl implements GolAlgorithm {
 
-    GridItem calc(GridItem item, neighbours) {
+    GridItem calc(GridItem item, numNeighbours) {
         return new GridItem()
     }
 }
 
+// NextService
+interface NextService {
+    boolean isStable()
+    Grid next(Grid seed)
+}
 
 class NextServiceImpl implements NextService {
 
@@ -28,8 +28,8 @@ class NextServiceImpl implements NextService {
         GridItem item
         Grid nextGrid = new Grid()
         while (item = seed.next()) {
-            def neighbours = seed.getNeighbours()
-            def nextItem = alg.calc(item, neighbours)
+            def numNeighbours = seed.countNeighbours()
+            def nextItem = alg.calc(item, numNeighbours)
             seed.push(nextItem)
         }
         return nextGrid

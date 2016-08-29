@@ -1,5 +1,6 @@
 class GridItem {
     def value
+    boolean alive
 
     GridItem(value) {
         this.value = value
@@ -7,6 +8,10 @@ class GridItem {
 
     def getValue() {
         return value
+    }
+
+    boolean isAlive() {
+        this.alive
     }
 }
 
@@ -67,7 +72,7 @@ class Grid {
         return this.data
     }
 
-    def getNeighbours() {
+    def countNeighbours() {
 
     }
 }
