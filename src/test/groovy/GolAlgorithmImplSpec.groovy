@@ -52,4 +52,18 @@ class GolAlgorithmImplSpec extends Specification {
         then:
         expected.isAlive()
     }
+
+    void 'should return a live cell when only one cell and three neighbours'() {
+        given:
+        def alg = new GolAlgorithmImpl()
+        def isAlive = true
+        def cell = new GridItem(isAlive)
+        def numNeighbours = 3
+
+        when:
+        def expected = alg.calc(cell, numNeighbours)
+
+        then:
+        expected.isAlive()
+    }
 }
