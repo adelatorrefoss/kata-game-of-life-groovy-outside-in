@@ -25,6 +25,8 @@ class NextServiceImplSpec extends Specification {
     void 'should go over all the grid calculating new grid'() {
         given:
         NextServiceImpl nextService = createNextService()
+
+        // Mocking a class!!
         Grid seed = Mock(Grid)
 
         when:
@@ -32,15 +34,18 @@ class NextServiceImplSpec extends Specification {
 
         then:
         next instanceof Grid
-        (1.._) * seed.nextItem() >> null
+        (1.._) * seed.next() >> null
     }
 
 
 
     /******
      * TODO
+     * - Create new grid with results
+     * - Calculate new item
+     * - Save new item
      * - grid with rows and columns
-     * - a single cell should die
+     * - Alg: a single cell should die
      *
      */
 }

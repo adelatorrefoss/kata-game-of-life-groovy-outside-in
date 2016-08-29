@@ -1,8 +1,5 @@
 class GameOfLife {
 
-    GameOfLife(nextSystem) {
-        this.nextSystem = nextSystem
-    }
 
 
     class GridItem {
@@ -12,7 +9,7 @@ class GameOfLife {
 
     class Grid {
 
-        GridItem nextItem() {
+        GridItem next() {
             //return new GridItem()
             //return null
         }
@@ -45,15 +42,22 @@ class GameOfLife {
         Grid next(Grid seed) {
             GridItem item
             Grid nextGrid = new Grid()
-            while (item = seed.nextItem()) {
+            while (item = seed.next()) {
 
             }
             return nextGrid
         }
     }
 
+
+
+    // Game of life
+
     NextService nextSystem = new NextServiceImpl()
 
+    GameOfLife(nextSystem) {
+        this.nextSystem = nextSystem
+    }
 
     GolIteration run(Grid seed, int maxIterations) {
 
