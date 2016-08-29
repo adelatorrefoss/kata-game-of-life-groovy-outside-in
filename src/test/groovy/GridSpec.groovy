@@ -91,5 +91,16 @@ class GridSpec extends Specification {
         grid.countNeighbours() == 0
     }
 
+    void 'get num neighbours in a minimal grid'() {
+        given:
+        Grid grid = new Grid(2,2)
+        for (int i = 1; i <= 10; i++) {
+            def alive = true
+            grid.push(new GridItem(alive))
+        }
+
+        expect:
+        grid.countNeighbours() == 3
+    }
 }
 
