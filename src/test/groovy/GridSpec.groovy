@@ -56,6 +56,29 @@ class GridSpec extends Specification {
         grid.next().getValue() == 4
     }
 
+    void 'should next method works in a no square config'() {
+        given:
+        Grid grid = new Grid(5,2)
+        for (int i = 1; i <= 10; i++) {
+            grid.push(new GridItem(i))
+        }
+
+        expect:
+        grid.getData().size() == 10
+        grid.getData().collect { it.getValue() } == [1,2,3,4,5,6,7,8,9,10]
+
+        grid.next().getValue() == 1
+        grid.next().getValue() == 2
+        grid.next().getValue() == 3
+        grid.next().getValue() == 4
+        grid.next().getValue() == 5
+        grid.next().getValue() == 6
+        grid.next().getValue() == 7
+        grid.next().getValue() == 8
+        grid.next().getValue() == 9
+        grid.next().getValue() == 10
+    }
+
     /******
      * TODO
      * - Alg: a single cell should die

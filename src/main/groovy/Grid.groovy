@@ -62,4 +62,8 @@ class Grid {
     void push(GridItem item) {
         this.data.push(item)
     }
+
+    ArrayList getData() {
+        return this.data
+    }
 }
