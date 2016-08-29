@@ -3,12 +3,20 @@ import spock.lang.Specification
 import GameOfLife.Grid
 import GameOfLife.NextServiceImpl
 import GameOfLife.GridItem
+import GameOfLife.GolAlgorithm
 
 class NextServiceImplSpec extends Specification {
 
-    NextServiceImpl createNextService() {
-        new NextServiceImpl()
+    NextServiceImpl createNextService(alg) {
+        if (!alg) {
+            alg = Mock(GolAlgorithm)
+        }
+        def nextService = new NextServiceImpl()
+        nextService.alg = alg
+        return nextService
     }
+
+
 
     void 'should return a new grid'() {
         given:
@@ -49,8 +57,22 @@ class NextServiceImplSpec extends Specification {
         then:
         // TODO??? How to check size without show internals of Grid to NextService
         // next.size() == seed.size()
-        (1..5) * seed.next() >>> [new GridItem(), new GridItem(), new GridItem(), new GridItem(), null]
-        (1..5) * seed.push(_)
+        5 * seed.next() >>> [new GridItem(), new GridItem(), new GridItem(), new GridItem(), null]
+        4 * seed.push(_)
+    }
+
+    void 'should calculate new item'() {
+        given:
+        Grid seed = Mock(Grid)
+        GolAlgorithm alg = Mock(GolAlgorithm)
+        NextServiceImpl nextService = createNextService(alg)
+
+        when:
+        Grid next = nextService.next(seed)
+
+        then:
+        5 * seed.next() >>> [new GridItem(), new GridItem(), new GridItem(), new GridItem(), null]
+        4 * alg.calc(_)
     }
 
     /******

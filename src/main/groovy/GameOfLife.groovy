@@ -25,7 +25,14 @@ class GameOfLife {
         Grid next(Grid seed)
     }
 
+
+    interface GolAlgorithm {
+        GridItem calc(GridItem item)
+    }
+
+
     class NextServiceImpl implements NextService {
+        GolAlgorithm alg
 
         boolean isStable() {
             return true
@@ -54,7 +61,7 @@ class GameOfLife {
 
     // Game of life
 
-    NextService nextSystem = new NextServiceImpl()
+    NextService nextSystem
 
     GameOfLife(nextSystem) {
         this.nextSystem = nextSystem
