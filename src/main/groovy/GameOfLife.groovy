@@ -14,19 +14,11 @@ class GameOfLife {
             //return null
         }
 
-    }
+        void push(GridItem item) {
 
-    class GolIteration {
-
-        GolIteration(Grid grid, int iterations) {
-            this.grid = grid
-            this.iterations = iterations
         }
 
-        Grid grid
-        int iterations
     }
-
 
     interface NextService {
         boolean isStable()
@@ -43,13 +35,22 @@ class GameOfLife {
             GridItem item
             Grid nextGrid = new Grid()
             while (item = seed.next()) {
-
+                seed.push(item)
             }
             return nextGrid
         }
     }
 
+    class GolIteration {
 
+        GolIteration(Grid grid, int iterations) {
+            this.grid = grid
+            this.iterations = iterations
+        }
+
+        Grid grid
+        int iterations
+    }
 
     // Game of life
 
