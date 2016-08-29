@@ -41,6 +41,21 @@ class GridSpec extends Specification {
         expected.getValue() == 1
     }
 
+    void 'should return with next same items than inserted'() {
+        given:
+        Grid grid = new Grid(2,2)
+        grid.push(new GridItem(1))
+        grid.push(new GridItem(2))
+        grid.push(new GridItem(3))
+        grid.push(new GridItem(4))
+
+        expect:
+        grid.next().getValue() == 1
+        grid.next().getValue() == 2
+        grid.next().getValue() == 3
+        grid.next().getValue() == 4
+    }
+
     /******
      * TODO
      * - next item from a grid
