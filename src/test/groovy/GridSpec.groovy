@@ -133,7 +133,6 @@ class GridSpec extends Specification {
         grid.push(new GridItem(true))
         grid.push(new GridItem(false))
 
-
         when:
         grid.next()
         grid.next()

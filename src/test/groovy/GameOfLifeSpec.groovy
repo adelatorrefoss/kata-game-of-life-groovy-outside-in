@@ -68,4 +68,5 @@ class GameOfLifeSpec extends Specification {
 
         1 * nextService.isStable() >> true
     }
+
 }
