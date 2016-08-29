@@ -1,6 +1,6 @@
 import spock.lang.*
 
-import GameOfLife.Grid
+import Grid
 import GameOfLife.GolIteration
 import GameOfLife.NextService
 

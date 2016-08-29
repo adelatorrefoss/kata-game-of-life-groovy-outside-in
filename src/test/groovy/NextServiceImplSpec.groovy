@@ -1,8 +1,8 @@
 import spock.lang.Specification
 
-import GameOfLife.Grid
+import Grid
 import GameOfLife.NextServiceImpl
-import GameOfLife.GridItem
+import GridItem
 import GameOfLife.GolAlgorithm
 
 class NextServiceImplSpec extends Specification {

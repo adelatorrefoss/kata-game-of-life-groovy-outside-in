@@ -1,7 +1,7 @@
 import spock.lang.Specification
 
-import GameOfLife.Grid
-import GameOfLife.GridItem
+import Grid
+import GridItem
 
 class GridSpec extends Specification {
 
@@ -31,21 +31,19 @@ class GridSpec extends Specification {
     void 'could store items in a position'() {
         given:
         Grid grid = new Grid()
-        GridItem item = Mock(GridItem)
+        GridItem item = new GridItem(1)
 
         when:
         grid.push(item)
         def expected = grid.get(0,0)
 
         then:
-        1 * item.getValue() >> 1
-        expected == 1
+        expected.getValue() == 1
     }
 
     /******
      * TODO
      * - next item from a grid
-     * - push item to a grid
      * - Alg: a single cell should die
      *
      */
