@@ -35,7 +35,7 @@ class Grid {
                 column < 0 || column >= this.columns) {
             throw new IndexOutOfBoundsException("Position requested out of grid")
         }
-        return this.data[row * this.rows + column]
+        return this.data[row * this.columns + column]
     }
 
     void nextRowAndColumn() {
