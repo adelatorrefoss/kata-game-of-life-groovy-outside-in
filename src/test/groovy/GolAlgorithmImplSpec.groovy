@@ -11,7 +11,7 @@ class GolAlgorithmImplSpec extends Specification {
         alg.calc(gridItem, numNeighbours) instanceof GridItem
     }
 
-    void 'should return a die cell when only one cell and no neighbours'() {
+    void 'should return a dead cell when only one cell and no neighbours'() {
         given:
         def alg = new GolAlgorithmImpl()
         def isAlive = true
@@ -25,7 +25,7 @@ class GolAlgorithmImplSpec extends Specification {
         !expected.isAlive()
     }
 
-    void 'should return a die cell when only one neighbour'() {
+    void 'should return a dead cell when only one neighbour'() {
         given:
         def alg = new GolAlgorithmImpl()
         def isAlive = true
@@ -65,5 +65,19 @@ class GolAlgorithmImplSpec extends Specification {
 
         then:
         expected.isAlive()
+    }
+
+    void 'should return a dead cell by overpopulation'() {
+        given:
+        def alg = new GolAlgorithmImpl()
+        def isAlive = true
+        def cell = new GridItem(isAlive)
+        def numNeighbours = 4
+
+        when:
+        def expected = alg.calc(cell, numNeighbours)
+
+        then:
+        !expected.isAlive()
     }
 }
