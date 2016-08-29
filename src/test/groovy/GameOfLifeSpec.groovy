@@ -1,8 +1,8 @@
 import spock.lang.*
 
 import Grid
-import GameOfLife.GolIteration
-import GameOfLife.NextService
+import GolIteration
+import NextService
 
 class GameOfLifeSpec extends Specification {
 

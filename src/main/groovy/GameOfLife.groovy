@@ -1,51 +1,52 @@
+interface NextService {
+    boolean isStable()
+    Grid next(Grid seed)
+}
+
+
+interface GolAlgorithm {
+    GridItem calc(GridItem item)
+}
+
+class GolAlgorithmImpl implements GolAlgorithm {
+
+    GridItem calc(GridItem item) {
+        return new GridItem()
+    }
+}
+
+
+class NextServiceImpl implements NextService {
+
+    GolAlgorithm alg
+
+    boolean isStable() {
+        return true
+    }
+
+    Grid next(Grid seed) {
+        GridItem item
+        Grid nextGrid = new Grid()
+        while (item = seed.next()) {
+            def nextItem = alg.calc(item)
+            seed.push(nextItem)
+        }
+        return nextGrid
+    }
+}
+
+class GolIteration {
+
+    GolIteration(Grid grid, int iterations) {
+        this.grid = grid
+        this.iterations = iterations
+    }
+
+    Grid grid
+    int iterations
+}
+
 class GameOfLife {
-    interface NextService {
-        boolean isStable()
-        Grid next(Grid seed)
-    }
-
-
-    interface GolAlgorithm {
-        GridItem calc(GridItem item)
-    }
-
-    class GolAlgorithmImpl implements GolAlgorithm {
-
-        GridItem calc(GridItem item) {
-            return new GridItem()
-        }
-    }
-
-
-    class NextServiceImpl implements NextService {
-
-        GolAlgorithm alg
-
-        boolean isStable() {
-            return true
-        }
-
-        Grid next(Grid seed) {
-            GridItem item
-            Grid nextGrid = new Grid()
-            while (item = seed.next()) {
-                def nextItem = alg.calc(item)
-                seed.push(nextItem)
-            }
-            return nextGrid
-        }
-    }
-
-    class GolIteration {
-
-        GolIteration(Grid grid, int iterations) {
-            this.grid = grid
-            this.iterations = iterations
-        }
-
-        Grid grid
-        int iterations
-    }
 
     // Game of life
 

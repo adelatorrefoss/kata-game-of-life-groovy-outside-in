@@ -78,11 +78,5 @@ class GridSpec extends Specification {
         grid.next().getValue() == 9
         grid.next().getValue() == 10
     }
-
-    /******
-     * TODO
-     * - Alg: a single cell should die
-     *
-     */
 }
 
