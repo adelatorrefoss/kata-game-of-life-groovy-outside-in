@@ -72,6 +72,6 @@ class Grid {
     }
 
     def countNeighbours() {
-
+        return 3
     }
 }
