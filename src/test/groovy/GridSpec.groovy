@@ -28,6 +28,20 @@ class GridSpec extends Specification {
         thrown(IndexOutOfBoundsException)
     }
 
+    void 'could store items in a position'() {
+        given:
+        Grid grid = new Grid()
+        GridItem item = Mock(GridItem)
+
+        when:
+        grid.push(item)
+        def expected = grid.get(0,0)
+
+        then:
+        1 * item.getValue() >> 1
+        expected == 1
+    }
+
     /******
      * TODO
      * - next item from a grid
