@@ -74,4 +74,19 @@ class NextServiceImplSpec extends Specification {
         5 * seed.next() >>> [new GridItem(), new GridItem(), new GridItem(), new GridItem(), null]
         4 * alg.calc(_)
     }
+
+    void 'should calculate new item passing neighbours'() {
+        given:
+        Grid seed = Mock(Grid)
+        GolAlgorithm alg = Mock(GolAlgorithm)
+        NextServiceImpl nextService = createNextService(alg)
+
+        when:
+        Grid next = nextService.next(seed)
+
+        then:
+        5 * seed.next() >>> [new GridItem(), new GridItem(), new GridItem(), new GridItem(), null]
+        4 * alg.calc(_, _)
+    }
+
 }
