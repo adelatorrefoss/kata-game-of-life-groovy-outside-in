@@ -8,10 +8,21 @@ class GameOfLife {
 
 
     class Grid {
+        int rows
+        int columns
 
-        // At list one row and column
-        int rows = 1
-        int columns =1
+        Grid() {
+            this.rows = 1
+            this.columns = 1
+        }
+
+        GridItem get(row, column) {
+            if ( row < 0 || row >= rows ||
+                    column < 0 || column >= columns) {
+                throw new IndexOutOfBoundsException("Position requested out of grid")
+            }
+            return null
+        }
 
         GridItem next() {
             //return new GridItem()

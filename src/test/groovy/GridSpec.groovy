@@ -19,10 +19,10 @@ class GridSpec extends Specification {
         Grid grid = new Grid()
 
         expect:
-        grid.get(1,1) == null
+        grid.get(0,0) == null
 
         when:
-        grid.get(1,2)
+        grid.get(1,0)
 
         then:
         thrown(IndexOutOfBoundsException)
