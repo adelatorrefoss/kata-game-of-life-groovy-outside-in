@@ -15,8 +15,6 @@ class Grid {
     int rows
     int columns
 
-    int writeRowIndex = 0
-    int writeColumnIndex = 0
     int readRowIndex = 0
     int readColumnIndex = 0
 
@@ -63,8 +61,5 @@ class Grid {
 
     void push(GridItem item) {
         this.data.push(item)
-
-        this.writeRowIndex ++
-        this.writeColumnIndex ++
     }
 }

@@ -58,7 +58,6 @@ class GridSpec extends Specification {
 
     /******
      * TODO
-     * - next item from a grid
      * - Alg: a single cell should die
      *
      */
