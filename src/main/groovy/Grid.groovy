@@ -1,6 +1,5 @@
 class GridItem {
     def value
-    boolean alive
 
     GridItem(value) {
         this.value = value
@@ -11,7 +10,7 @@ class GridItem {
     }
 
     boolean isAlive() {
-        this.alive
+        this.value
     }
 }
 

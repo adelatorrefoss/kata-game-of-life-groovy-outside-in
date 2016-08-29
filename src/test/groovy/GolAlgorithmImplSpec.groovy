@@ -25,7 +25,7 @@ class GolAlgorithmImplSpec extends Specification {
         !expected.isAlive()
     }
 
-    // TODO: Only one neighbour
+    // TODO: Only one neighbour returns a die cell
 
     void 'should return a live cell when only one cell and two neighbours'() {
         given:

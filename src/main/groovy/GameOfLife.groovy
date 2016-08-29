@@ -6,7 +6,13 @@ interface GolAlgorithm {
 class GolAlgorithmImpl implements GolAlgorithm {
 
     GridItem calc(GridItem item, numNeighbours) {
-        return new GridItem()
+        def alive = false
+        if (item.isAlive()) {
+            if (numNeighbours >= 2 && numNeighbours <= 3) {
+                alive = true
+            }
+        }
+        return new GridItem(alive)
     }
 }
 
