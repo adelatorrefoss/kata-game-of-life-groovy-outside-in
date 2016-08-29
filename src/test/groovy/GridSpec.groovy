@@ -82,10 +82,8 @@ class GridSpec extends Specification {
     void 'get num neighbours'() {
         given:
         Grid grid = new Grid(1,1)
-        for (int i = 1; i <= 10; i++) {
-            def alive = true
-            grid.push(new GridItem(alive))
-        }
+        def alive = true
+        grid.push(new GridItem(alive))
 
         expect:
         grid.countNeighbours() == 0
@@ -94,13 +92,32 @@ class GridSpec extends Specification {
     void 'get num neighbours in a minimal grid'() {
         given:
         Grid grid = new Grid(2,2)
-        for (int i = 1; i <= 10; i++) {
+        for (int i = 1; i <= 4; i++) {
             def alive = true
             grid.push(new GridItem(alive))
         }
 
         expect:
         grid.countNeighbours() == 3
+    }
+
+    void 'get num neighbours from central cell in a big grid'() {
+        given:
+        Grid grid = new Grid(3,3)
+        for (int i = 1; i <= 9; i++) {
+            def alive = true
+            grid.push(new GridItem(alive))
+        }
+
+        when:
+        grid.next()
+        grid.next()
+        grid.next()
+        grid.next()
+        def numNeighbours = grid.countNeighbours()
+
+        then:
+        numNeighbours == 8
     }
 }
 
