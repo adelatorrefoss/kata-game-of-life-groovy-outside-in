@@ -11,7 +11,7 @@ class GolAlgorithmImpl implements GolAlgorithm {
             if (numNeighbours >= 2 && numNeighbours <= 3) {
                 alive = true
             }
-        }
+        } 
         return new GridItem(alive)
     }
 }

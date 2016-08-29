@@ -80,4 +80,18 @@ class GolAlgorithmImplSpec extends Specification {
         then:
         !expected.isAlive()
     }
+
+    void 'when dead cell should return a live cell by reproduction'() {
+        given:
+        def alg = new GolAlgorithmImpl()
+        def isAlive = false
+        def cell = new GridItem(isAlive)
+        def numNeighbours = 3
+
+        when:
+        def expected = alg.calc(cell, numNeighbours)
+
+        then:
+        expected.isAlive()
+    }
 }
