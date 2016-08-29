@@ -17,14 +17,21 @@ class Grid {
     int rows
     int columns
 
-    int actualRow = 0
-    int actualColumn = 0
+    int writeRowIndex = 0
+    int writeColumnIndex = 0
+    int readRowIndex = 0
+    int readColumnIndex = 0
 
     def data = new ArrayList()
 
     Grid() {
         this.rows = 1
         this.columns = 1
+    }
+
+    Grid(int rows, int columns) {
+        this.rows = rows
+        this.columns = columns
     }
 
     GridItem get(row, column) {
@@ -35,17 +42,33 @@ class Grid {
         return this.data[row * this.rows + column]
     }
 
+    void nextRowAndColumn() {
+        readColumnIndex ++
+        if (readColumnIndex >= this.columns) {
+            readColumnIndex = 0
+            readRowIndex ++
+        }
+    }
+
     GridItem next() {
-        //return new GridItem()
-        //return null
+        def item
+        try {
+            item = this.get(readRowIndex, readColumnIndex)
+
+            nextRowAndColumn()
+        } catch(IndexOutOfBoundsException e) {
+            item = null
+        }
+
+        return item
     }
 
     void push(GridItem item) {
-        item.row = this.actualRow
-        item.column = this.actualColumn
+        item.row = this.writeRowIndex
+        item.column = this.writeColumnIndex
         this.data.push(item)
 
-        this.actualRow ++
-        this.actualColumn ++
+        this.writeRowIndex ++
+        this.writeColumnIndex ++
     }
 }

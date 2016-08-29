@@ -41,7 +41,7 @@ class GridSpec extends Specification {
         expected.getValue() == 1
     }
 
-    void 'should return with next same items than inserted'() {
+    void 'should return with next method same items than inserted'() {
         given:
         Grid grid = new Grid(2,2)
         grid.push(new GridItem(1))
