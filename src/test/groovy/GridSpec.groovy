@@ -78,5 +78,17 @@ class GridSpec extends Specification {
         grid.next().getValue() == 9
         grid.next().getValue() == 10
     }
+
+    void 'get num neighbours'() {
+        given:
+        Grid grid = new Grid(2,2)
+        for (int i = 1; i <= 10; i++) {
+            def alive = true
+            grid.push(new GridItem(alive))
+        }
+
+        expect:
+        grid.countNeighbours() == 3
+    }
 }
 
