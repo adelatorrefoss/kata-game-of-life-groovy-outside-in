@@ -27,6 +27,10 @@ class NextServiceImpl implements NextService {
 
     GolAlgorithm alg
 
+    NextServiceImpl(GolAlgorithm golAlg) {
+        this.alg = golAlg
+    }
+
     boolean isStable() {
         return true
     }
