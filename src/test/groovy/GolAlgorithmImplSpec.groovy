@@ -25,7 +25,19 @@ class GolAlgorithmImplSpec extends Specification {
         !expected.isAlive()
     }
 
-    // TODO: Only one neighbour returns a die cell
+    void 'should return a die cell when only one neighbour'() {
+        given:
+        def alg = new GolAlgorithmImpl()
+        def isAlive = true
+        def cell = new GridItem(isAlive)
+        def numNeighbours = 1
+
+        when:
+        def expected = alg.calc(cell, numNeighbours)
+
+        then:
+        !expected.isAlive()
+    }
 
     void 'should return a live cell when only one cell and two neighbours'() {
         given:
