@@ -7,14 +7,11 @@ class GolAlgorithmImpl implements GolAlgorithm {
 
     GridItem calc(GridItem item, numNeighbours) {
         def alive = false
-        if (item.isAlive()) {
-            if (numNeighbours >= 2 && numNeighbours <= 3) {
-                alive = true
-            }
-        } else {
-            if (numNeighbours == 3) {
-                alive = true
-            }
+        if ((item.isAlive() &&
+                numNeighbours >= 2 && numNeighbours <= 3) ||
+                (!item.isAlive() &&
+                        numNeighbours == 3)) {
+            alive = true
         }
         return new GridItem(alive)
     }
