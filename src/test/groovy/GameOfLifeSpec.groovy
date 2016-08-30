@@ -6,24 +6,46 @@ import NextService
 
 class GameOfLifeSpec extends Specification {
 
-    private Grid createSeed() {
-        new Grid()
+    Grid createSeed() {
+        def grid = Stub(Grid)
+        def gridItem = Stub(GridItem)
+        gridItem.isAlive() >> true
+        grid.getData() >> [gridItem, gridItem, gridItem]
+
+        return grid
     }
 
-    private Grid createUnstableSeed() {
-        new Grid()
+    Grid createUnstableSeed() {
+        def grid = Stub(Grid)
+        def gridItem = Stub(GridItem)
+        def gridItem2 = Stub(GridItem)
+        gridItem.isAlive() >> true
+        gridItem2.isAlive() >> false
+        grid.getData() >> [gridItem, gridItem, gridItem2]
+
+        return grid
     }
 
-    Grid createStableSeed() {
-        new Grid()
-    }
-
-    private GameOfLife createGol(nextService) {
+    GameOfLife createGol(nextService) {
         new GameOfLife(nextService)
     }
 
-    private GameOfLife createGol() {
-        createGol(Mock(NextService))
+    GameOfLife createGol() {
+        def nextService = Stub(NextService)
+        def nextGrid = createSeed()
+        nextService.next(_) >> nextGrid
+        createGol(nextService)
+    }
+
+    GameOfLife createGolUnstable() {
+        def nextService = Stub(NextService)
+        def nextGridAllFalse = createSeed()
+        def nextGridUnstable = createUnstableSeed()
+        nextService.next(_) >>> [nextGridUnstable, nextGridAllFalse, nextGridUnstable, nextGridAllFalse,
+                                 nextGridUnstable, nextGridAllFalse, nextGridUnstable, nextGridAllFalse,
+                                 nextGridUnstable, nextGridAllFalse, nextGridUnstable, nextGridAllFalse]
+
+        createGol(nextService)
     }
 
     void 'should return a grid and num iterations'() {
@@ -41,8 +63,8 @@ class GameOfLifeSpec extends Specification {
 
     void 'should reach max iterations'() {
         given:
-        GameOfLife gol = createGol()
-        Grid seed = createUnstableSeed()
+        GameOfLife gol = createGolUnstable()
+        Grid seed = createSeed()
         int maxIterations = 10
 
         when:
@@ -54,10 +76,9 @@ class GameOfLifeSpec extends Specification {
 
     void 'should stop when stable and not reach max iterations'() {
         given:
-        def nextService = Mock(NextService)
-        GameOfLife gol = createGol(nextService)
+        GameOfLife gol = createGol()
 
-        Grid seed = createStableSeed()
+        Grid seed = createSeed()
         int maxIterations = 10
 
         when:
@@ -65,8 +86,6 @@ class GameOfLifeSpec extends Specification {
 
         then:
         result.iterations < maxIterations
-
-        1 * nextService.isStable() >> true
     }
 
 }

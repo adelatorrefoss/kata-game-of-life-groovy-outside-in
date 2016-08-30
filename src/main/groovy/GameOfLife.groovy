@@ -87,6 +87,7 @@ class GameOfLife {
             nextSeed = nextSystem.next(seed)
             isStable = this.isStable(seed, nextSeed)
             i++
+            seed = nextSeed
         }
 
         return new GolIteration(nextSeed, i)

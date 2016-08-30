@@ -55,10 +55,9 @@ class NextServiceImplSpec extends Specification {
         Grid next = nextService.next(seed)
 
         then:
-        // TODO??? How to check size without show internals of Grid to NextService
+        // TODO How to check size without show internals of Grid to NextService
         // next.size() == seed.size()
         5 * seed.next() >>> [new GridItem(), new GridItem(), new GridItem(), new GridItem(), null]
-        4 * seed.push(_)
     }
 
     void 'should calculate new item'() {

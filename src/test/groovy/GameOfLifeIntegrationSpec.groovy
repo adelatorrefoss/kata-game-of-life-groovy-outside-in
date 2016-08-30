@@ -56,7 +56,7 @@ class GameOfLifeIntegrationSpec extends Specification {
         def result = gol.run(seed, maxIterations)
 
         then:
-        result.grid.getData().every { !it.isAlive }
-        result.iterations == 1
+        result.grid.getData().every { !it.isAlive() }
+        result.iterations == 2
     }
 }
