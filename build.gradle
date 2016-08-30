@@ -33,3 +33,20 @@ test {
         //        org.gradle.api.tasks.testing.logging.TestLogEvent.STANDARD_ERROR,
     }
 }
+
+task runScript(type: JavaExec) {
+    description 'Run Groovy script'
+
+    // Set main property to name of Groovy script class.
+    main = 'Main'
+
+    // Set classpath for running the Groovy script.
+    classpath = sourceSets.main.runtimeClasspath
+
+    if (project.hasProperty('custom')) {
+        // Pass command-line argument to script.
+        args project.getProperty('custom')
+    }
+}
+
+defaultTasks 'runScript'
