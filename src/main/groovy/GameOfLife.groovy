@@ -19,7 +19,6 @@ class GolAlgorithmImpl implements GolAlgorithm {
 
 // NextService
 interface NextService {
-    boolean isStable()
     Grid next(Grid seed)
 }
 
@@ -31,17 +30,19 @@ class NextServiceImpl implements NextService {
         this.alg = golAlg
     }
 
-    boolean isStable() {
-        return true
-    }
-
     Grid next(Grid seed) {
         GridItem item
-        Grid nextGrid = new Grid()
+
+        // TODO: Forgot to initialize Grid with rows and columns
+        // lack of tests
+        Grid nextGrid = new Grid(seed.rows, seed.columns)
+
+        // TODO: Found bug. When seed.next() returns null , this method returns an empty grid
+        //    This behaviour is not controlled
         while (item = seed.next()) {
             def numNeighbours = seed.countNeighbours()
             def nextItem = alg.calc(item, numNeighbours)
-            seed.push(nextItem)
+            nextGrid.push(nextItem)
         }
         return nextGrid
     }
@@ -64,6 +65,14 @@ class GameOfLife {
 
     NextService nextSystem
 
+    // TODO: isStable is not tested alone
+    boolean isStable(Grid current, Grid next) {
+        def currentData = current.getData().collect { it.isAlive() }
+        def nextData = next.getData().collect { it.isAlive() }
+        def isStable = currentData.equals(nextData)
+        return isStable
+    }
+
     GameOfLife(nextSystem) {
         this.nextSystem = nextSystem
     }
@@ -72,12 +81,11 @@ class GameOfLife {
 
         def isStable = false
         int i = 0
-        GolIteration next = null
         Grid nextSeed = null
 
         while (!isStable && i < maxIterations) {
             nextSeed = nextSystem.next(seed)
-            isStable = nextSystem.isStable()
+            isStable = this.isStable(seed, nextSeed)
             i++
         }
 
