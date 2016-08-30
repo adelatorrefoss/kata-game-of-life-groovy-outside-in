@@ -43,7 +43,8 @@ class NextServiceImplSpec extends Specification {
 
         then:
         next instanceof Grid
-        (1.._) * seed.next() >> null
+        2 * seed.current() >>> [Mock(GridItem), null]
+        1 * seed.next()
     }
 
     void 'should create new grid with the same size as seed'() {
@@ -57,7 +58,7 @@ class NextServiceImplSpec extends Specification {
         then:
         // TODO How to check size without show internals of Grid to NextService
         // next.size() == seed.size()
-        5 * seed.next() >>> [new GridItem(), new GridItem(), new GridItem(), new GridItem(), null]
+        5 * seed.current() >>> [new GridItem(), new GridItem(), new GridItem(), new GridItem(), null]
     }
 
     void 'should calculate new item'() {
@@ -70,7 +71,7 @@ class NextServiceImplSpec extends Specification {
         Grid next = nextService.next(seed)
 
         then:
-        5 * seed.next() >>> [new GridItem(), new GridItem(), new GridItem(), new GridItem(), null]
+        5 * seed.current() >>> [new GridItem(), new GridItem(), new GridItem(), new GridItem(), null]
         4 * alg.calc(*_)
     }
 
@@ -84,7 +85,7 @@ class NextServiceImplSpec extends Specification {
         Grid next = nextService.next(seed)
 
         then:
-        5 * seed.next() >>> [new GridItem(), new GridItem(), new GridItem(), new GridItem(), null]
+        5 * seed.current() >>> [new GridItem(), new GridItem(), new GridItem(), new GridItem(), null]
         4 * alg.calc(_, _)
         4 * seed.countNeighbours()
     }

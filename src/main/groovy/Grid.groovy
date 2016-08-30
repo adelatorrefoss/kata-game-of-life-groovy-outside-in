@@ -50,6 +50,10 @@ class Grid {
         }
     }
 
+    GridItem current() {
+        this.getSafe(this.readRowIndex, this.readColumnIndex)
+    }
+
     GridItem next() {
         def item = this.getSafe(this.readRowIndex, this.readColumnIndex)
         if (item) {

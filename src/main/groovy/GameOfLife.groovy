@@ -39,10 +39,14 @@ class NextServiceImpl implements NextService {
 
         // TODO: Found bug. When seed.next() returns null , this method returns an empty grid
         //    This behaviour is not controlled
-        while (item = seed.next()) {
+        // 
+        //  and found a bug in calculating neighbours after next
+        //   we should separate this in current() and next()
+        while (item = seed.current()) {
             def numNeighbours = seed.countNeighbours()
             def nextItem = alg.calc(item, numNeighbours)
             nextGrid.push(nextItem)
+            seed.next()
         }
         return nextGrid
     }
